@@ -1,0 +1,42 @@
+.rating {
+  background: #fff;
+}
+
+input[type="radio"] {
+  position: fixed;
+  top: 0;
+  right: 100%;
+}
+
+label {
+  font-size: 1.5em;
+  padding: 0.2em;
+  margin: 0;
+  float: left;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked ~ input + label {
+  background: none;
+  color: #aaa;
+}
+
+input + label {
+  color: #3cf;
+  margin: 0 0 1em 0;
+}
+
+hr {
+  clear: both;
+  border: 0;
+  border-top: 2px solid #999;
+  margin: 2em 0;
+}
+
+.tm-list-item-img {
+  cursor: pointer;
+}
+
+.tm-list-item-name {
+  cursor: pointer;
+}

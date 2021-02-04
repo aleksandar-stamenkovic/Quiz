@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelRecommender</title>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="css/tooplate-wave-cafe.css">
+    <link rel="stylesheet" href="./my-css/style1.css">
+    <link rel="stylesheet" href="./my-css/starRating.css">
+
+    <!-- Mape -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+</head>
+<body>
+  <div class="tm-container">
+    <div class="tm-row">
+      <!-- Site Header -->
+      <div class="tm-left">
+        <div class="tm-left-inner">
+          <div class="tm-site-header">
+            <i class="fas fa-globe-europe fa-3x tm-site-logo"></i>
+            <h1 class="tm-site-name">Travel Recommender</h1>
+          </div>
+          <nav class="tm-site-nav">
+            <ul class="tm-site-nav-ul">
+              <li class="tm-page-nav-item">
+                <a href="#drink" class="tm-page-link active">
+                  <i class="fas fa-star tm-page-link-icon"></i>
+                  <span>Popularno</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="#about" class="tm-page-link">
+                  <i class="fas fa-users tm-page-link-icon"></i>
+                  <span>O aplikaciji</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="#special" id="pretrazi-btn" class="tm-page-link">
+                  <i class="fas fa-search tm-page-link-icon"></i>
+                  <span>Pretraži</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="#addplace" id="addRoute-btn" class="tm-page-link">
+                  <i class="fas fa-comments tm-page-link-icon"></i>
+                  <span>Dodaj mesta</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="#register" id="buttonRegister" class="tm-page-link">
+                  <i class="fas fa-user tm-page-link-icon"></i>
+                  <span id="buttonRegisterSpan">Registrujte se</span>
+                </a>
+              </li>
+              <li id="btnPrijava" class="tm-page-nav-item">
+                <a href="#login" id="buttonRegister" class="tm-page-link">
+                  <i class="fas fa-sign-in-alt tm-page-link-icon"></i>
+                  <span id="buttonLoginSpan">Prijavite se</span>
+                </a>
+              </li>
+              <li id="btnOdjava" hidden class="tm-page-nav-item">
+                <a id="buttonRegister" class="tm-page-link" onclick="OdjaviSe()">
+                  <i class="fas fa-sign-in-alt tm-page-link-icon"></i>
+                  <span id="buttonLoginSpan">Odjavi se</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>        
+      </div>
+      <!-- end of Site header -->
+
+      <div class="tm-right">
+        <main class="tm-main">
+
+          <!-- Popularno Page -->
+          <div id="drink" class="tm-page-content">            
+            <nav class="tm-black-bg tm-drinks-nav">
+              <ul>
+                <!--<li>
+                  <a href="#" class="tm-tab-link" data-id="actual">Aktuelno</a>
+                </li>-->
+                <li>
+                  <a href="#" class="tm-tab-link active" data-id="bestRated">Najbolje ocenjeni</a>
+                </li>
+                <li>
+                  <a href="#" class="tm-tab-link" data-id="popular">Preporuka</a>
+                </li>
+              </ul>
+            </nav>
+
+            <!--<div id="actual" class="tm-tab-content">
+              <div class="tm-list">
+                <div class="tm-list-item">          
+                  <img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
+                  <div class="tm-black-bg tm-list-item-text">
+                    <h3 class="tm-list-item-name">Kopaonik<span class="tm-list-item-price"><i class="fas fa-star"></i> 10.25</span></h3>
+                    <p class="tm-list-item-description">Najlepša planina u srbiji veoma popularna zimi kao skijalište, i kao mesto za odmor i skijanje.</p>
+                  </div>
+                </div>
+                <!-- dinamicno dodavanj kartica -->                                       
+             <!--</div>
+            </div> -->
+
+            <div id="bestRated" class="tm-tab-content">
+              <div class="tm-list">              
+
+                <!-- dinamicno dodavanj kartica -->                         
+              </div>
+            </div>
+
+            <div id="popular" class="tm-tab-content">
+              <div class="tm-list">
+
+                <!-- dinamicno dodavanj kartica -->                 
+              </div>
+            </div>
+          </div>
+          <!-- end Popularno Page -->
+
+
+          <!-- O nama Page -->
+          <div id="about" class="tm-page-content">
+            <div class="tm-black-bg tm-mb-20 tm-about-box-1">              
+              <h2 class="tm-text-primary tm-about-header">O aplikaciji</h2>
+              <div class="tm-list-item tm-list-item-2">                
+                <img src="https://iconicsantorini.com/wp-content/uploads/2016/07/Travelling-Abroad.jpg" alt="Image" class="tm-list-item-img tm-list-item-img-big">
+                <div class="tm-list-item-text-2">
+                  <p>Aplikacija "Travel Recommender" je namenjena za preporuku lokacija za posetu na osnovu željene lokacije.</p>
+                  <p>Preporuka se zasniva na putovanjima korisnika koju su putujući na neku lokaciju, posetili usput još neke lokacije i na osnovu toga dali predlog.</p>
+                </div>                
+              </div>
+            </div>
+            <div class="tm-black-bg tm-mb-20 tm-about-box-2">              
+              <div class="tm-list-item tm-list-item-2">                
+                <div class="tm-list-item-text-2">
+                  <h2 class="tm-text-primary">Način korišćenja aplikacije</h2>
+                  <p><b>Dodavanje lokacija</b></p>
+                  <p>Nakon unosa željenih lokacija potrebno je kliknuti na dugme "Završi" čime se snimaju unete lokacije.</p>
+                  <p><b>Pretraga lokacija</b></p>
+                  <p>Nakon unete reči za pretragu dobija se rezultat pretrage koji predstavlja preporuku za obilazak tih lokacija.</p>                  
+                </div>                
+                <img src="https://sites.google.com/site/beogradzasve/_/rsrc/1432991921499/hram-svetog-save/hram_2.jpg" alt="Image" class="tm-list-item-img tm-list-item-img-big tm-img-right">                
+              </div>
+            </div>
+          </div>
+          <!-- end O Nama Page -->
+
+
+          <!-- Pretrazi Page -->
+          <div id="special" class="tm-page-content">
+            <div class="tm-black-bg tm-form-group search-place-form">
+              <input type="text" name="name" class="tm-form-control search-place-input" placeholder="Pretraži . . ." required="" />
+              <button  class="tm-btn-primary tm-align-right search-place-btn" onclick="pretraziMesta()">
+                <i class="fas fa-search tm-page-link-icon"></i>
+              </button>
+            </div>
+            <div id='map' style='height: 300px; opacity: 0.75;'></div>
+            <p></p>   
+            <div id="searchResult"class="tm-special-items">
+
+              <!-- dinamicno generisanje elemenata -->
+            </div>
+                 
+          </div>
+          <!-- end Pretrazi Page -->
+
+
+         <!-- Register and Login Page -->          
+         <div id="register" class="tm-page-content">
+            <div class="tm-black-bg tm-contact-text-container">
+             <h2 class="tm-text-primary">Pridružite nam se</h2>
+             <p>Želite da putujete, a niste sigurni koju lokaciju da izaberete? Na pravom ste mestu! Pridružite nam se i mi ćemo Vam olakšati da se odlučite!</p>
+           </div>
+            <div class="tm-black-bg tm-contact-form-container tm-align-right">
+             <form onsubmit="return false">
+               <div class="tm-form-group">
+                  <input type="text" name="name" class="tm-form-control my-control-register" placeholder="Ime" required="" />
+               </div>
+               <div class="tm-form-group">
+                 <input type="text" name="lastname" class="tm-form-control my-control-register" placeholder="Prezime" required="" />
+               </div>
+               <div class="tm-form-group">
+                  <input type="email" name="email" class="tm-form-control my-control-register" placeholder="Email" required="" />
+                </div>
+                <div class="tm-form-group">
+                  <input type="password" name="name" class="tm-form-control my-control-register" placeholder="Password" required="" />
+                </div>               
+                <div>
+                  <button  class="tm-btn-primary tm-align-right" onclick="registrujSe()">
+                    Registrujte se
+                  </button>
+               </div>
+             </form>
+           </div>
+         </div>         
+          
+          
+          <div id="login" class="tm-page-content">
+            <div class="tm-black-bg tm-contact-text-container">
+              <h2 class="tm-text-primary">Pridružite nam se</h2>
+              <p>Želite da putujete, a niste sigurni koju lokaciju da izaberete? Na pravom ste mestu! Pridružite nam se i mi ćemo Vam olakšati da se odlučite!</p>
+            </div>
+            <div class="tm-black-bg tm-contact-form-container tm-align-right">
+             <form onsubmit="return false">
+               <div class="tm-form-group">
+                 <input type="email" name="email" class="tm-form-control my-control-login" placeholder="Email" required="" />
+               </div>
+                <div class="tm-form-group">
+                  <input type="password" name="name" class="tm-form-control my-control-login" placeholder="Password" required="" />
+                </div>               
+                <div>
+                 <button  class="tm-btn-primary tm-align-right" onclick="LogujSe()">
+                   Prijavite se
+                  </button>                 
+             </div>
+              </form>
+            </div>
+          </div>
+          <!-- end Register and Login Page -->
+
+
+          <!-- Dodaj mesta page -->
+          <div id="addplace" class="tm-page-content">
+            <div class="tm-black-bg tm-contact-text-container">
+              <h2 class="tm-text-primary">Dodajte putovanje</h2>
+              <p>Ovde je omogućeno dodati rutu kojom ste putovali tako da svako mesto predstavlja jednu lokaciju koju ste posetili. Svaku dodatu karticu možete opisati, dodati sliku kao i ostaviti vašu ocenu za svaku od lokacija.</p>
+              <p>Ukoliko ste dodali rutu iz ostalih kartica klikom na dodaj rutu potrebno je samo dodati opis i ocenu za to konkretno mesto.<br>ukoliko lokacija postoji nije neophodno dodavati sliku.</p>
+            </div>
+            <!-- dinamicko dodavanje elemenata (forme i kartice) -->
+          </div>
+          <!-- end Dodaj mesta page-->
+
+
+
+        </main>
+      </div>    
+    </div>
+    <footer class="tm-site-footer">
+      <p class="tm-black-bg tm-footer-text">| Milan Stanković <br> | Aleksandar Stamenković <br>      
+      | ELFAK: <a class="tm-footer-link" rel="sponsored" target="_parent">RII</a></p>
+    </footer>
+  </div>
+    
+
+  <!-- Background video -->
+  <div class="tm-video-wrapper">
+      <i id="tm-video-control-button" class="fas fa-pause"></i>
+      <video autoplay muted loop id="tm-video">
+          <source src="video/video-manasija-monastery2-compressed.mp4" type="video/mp4">
+      </video>
+  </div>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="./my-js/UserJoin.js"></script>
+  <script src="./my-js/addTravelRoute.js"></script>
+  <script src="./my-js/searchCardsJq.js"></script>
+  <script src="./my-js/homeViewCards.js"></script>
+   
+  <script>
+
+    function setVideoSize() {
+      const vidWidth = 1920;
+      const vidHeight = 1080;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const tempVidWidth = windowHeight * vidWidth / vidHeight;
+      const tempVidHeight = windowWidth * vidHeight / vidWidth;
+      const newVidWidth = tempVidWidth > windowWidth ? tempVidWidth : windowWidth;
+      const newVidHeight = tempVidHeight > windowHeight ? tempVidHeight : windowHeight;
+      const tmVideo = $('#tm-video');
+
+      tmVideo.css('width', newVidWidth);
+      tmVideo.css('height', newVidHeight);
+    }
+
+    function openTab(evt, id) {
+      $('.tm-tab-content').hide();
+      $('#' + id).show();
+      $('.tm-tab-link').removeClass('active');
+      $(evt.currentTarget).addClass('active');
+    }    
+
+    function initPage() {
+      let pageId = location.hash;
+
+      if(pageId) {
+        highlightMenu($(`.tm-page-link[href^="${pageId}"]`)); 
+        showPage($(pageId));
+      }
+      else {
+        pageId = $('.tm-page-link.active').attr('href');
+        showPage($(pageId));
+      }
+    }
+
+    function highlightMenu(menuItem) {
+      $('.tm-page-link').removeClass('active');
+      menuItem.addClass('active');
+    }
+
+    function showPage(page) {
+      $('.tm-page-content').hide();
+      page.show();
+    }
+
+    $(document).ready(function(){
+
+      /***************** Pages *****************/
+
+      initPage();
+
+      $('.tm-page-link').click(function(event) {
+        
+        if(window.innerWidth > 991) {
+          event.preventDefault();
+        }
+
+        highlightMenu($(event.currentTarget));
+        showPage($(event.currentTarget.hash));
+      });
+
+      
+      /***************** Tabs *******************/
+
+      $('.tm-tab-link').on('click', e => {
+        e.preventDefault(); 
+        openTab(e, $(e.target).data('id'));
+      });
+
+      $('.tm-tab-link.active').click(); // Open default tab
+
+
+      /************** Video background *********/
+
+      setVideoSize();
+
+      // Set video background size based on window size
+      let timeout;
+      window.onresize = function(){
+        clearTimeout(timeout);
+        timeout = setTimeout(setVideoSize, 100);
+      };
+
+      // Play/Pause button for video background      
+      const btn = $("#tm-video-control-button");
+
+      btn.on("click", function(e) {
+        const video = document.getElementById("tm-video");
+        $(this).removeClass();
+
+        if (video.paused) {
+          video.play();
+          $(this).addClass("fas fa-pause");
+        } else {
+          video.pause();
+          $(this).addClass("fas fa-play");
+        }
+      });
+    });
+      
+  </script>
+
+</body>
+</html>
