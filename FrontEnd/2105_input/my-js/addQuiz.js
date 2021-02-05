@@ -30,7 +30,7 @@ function dodajPitanje(host) {
   if (rb3.checked == true) tacno = rb3.value;
   if (rb4.checked == true) tacno = rb4.value;
 
-  let tmoObject = {
+  let tmpObject = {
     pitanje: pitanje,
     odgovor1: odg1,
     odgovor2: odg2,
@@ -39,8 +39,8 @@ function dodajPitanje(host) {
     tacno: tacno,
   };
 
-  console.log(tmoObject);
-
+  console.log(tmpObject);
+  nizPitanja.push(tmpObject);
   console.log(pitanje, odg1, odg2, odg3, odg4, tacno);
   console.log(host.parentNode.parentNode.parentNode.parentNode);
   let parent = host.parentNode.parentNode.parentNode;
@@ -126,6 +126,7 @@ function zavrsiDodavanjeKviza() {
 
   let ime = document.querySelector(".input-naziv-kviza").value;
   console.log(ime);
+  console.log(nizPitanja);
 
   fetch("https://localhost:44340/mesto", {
     method: "POST",
