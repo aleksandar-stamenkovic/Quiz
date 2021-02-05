@@ -14,11 +14,11 @@ namespace QuizAPI.DomainModel
         public string Prezime { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public List<MongoDBRef> Kvizovi { get; set; }
+        public List<Kviz> Kvizovi { get; set; }
 
         public Korisnik()
         {
-            Kvizovi = new List<MongoDBRef>();
+            Kvizovi = new List<Kviz>();
         }
 
     }
