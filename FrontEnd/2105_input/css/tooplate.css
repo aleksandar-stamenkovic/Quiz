@@ -6,7 +6,6 @@ http://www.tooplate.com/view/2105-input
 	
 */
 
-
 html {
   font-size: 17px;
 }
@@ -28,12 +27,12 @@ body {
 }
 
 a {
-  color: #FFF;
+  color: #fff;
   transition: all 0.3s ease;
 }
 a:hover,
 a:focus {
-  color: #9CF;
+  color: #9cf;
   text-decoration: none;
 }
 
@@ -196,7 +195,7 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 .tm-form-pad-big {
-  padding: 60px 100px;
+  padding: 20px 60px;
 }
 
 [type="radio"]:not(:checked) + span:before,
