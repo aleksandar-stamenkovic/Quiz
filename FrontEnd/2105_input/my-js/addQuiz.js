@@ -31,12 +31,12 @@ function dodajPitanje(host) {
   if (rb4.checked == true) tacno = rb4.value;
 
   let tmpObject = {
-    pitanje: pitanje,
+    tekst: pitanje,
     odgovor1: odg1,
     odgovor2: odg2,
     odgovor3: odg3,
     odgovor4: odg4,
-    tacno: tacno,
+    tacan: parseInt(tacno),
   };
 
   console.log(tmpObject);
@@ -125,18 +125,23 @@ function zavrsiDodavanjeKviza() {
   }
 
   let ime = document.querySelector(".input-naziv-kviza").value;
+  console.log("***************************");
   console.log(ime);
   console.log(nizPitanja);
+  console.log(JSON.parse(localStorage.getItem("loged-in")).email);
+  console.log("***************************");
 
-  fetch("https://localhost:44340/mesto", {
+  fetch("https://localhost:44333/kviz/" + JSON.parse(localStorage.getItem("loged-in")).email, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: {
-      naziv: ime,
-      pitanja: JSON.stringify(nizPitanja),
-    },
+    body: 
+      JSON.stringify({
+        naziv: ime,
+        pitanja: nizPitanja,
+      })
+    ,
   }).then((p) => {
     if (p.ok) {
       console.log("USPESNO DODATA RUTA");
