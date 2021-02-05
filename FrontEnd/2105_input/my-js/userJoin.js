@@ -46,7 +46,7 @@ function registrujSe() {
   console.log(email);
   console.log(password);
 
-  fetch("https://localhost:44340/korisnik", {
+  fetch("https://localhost:44333/korisnik", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -90,7 +90,7 @@ function logujSe() {
   console.log(email);
   console.log(password);
 
-  fetch("https://localhost:44340/korisnik/login", {
+  fetch("https://localhost:44333/korisnik/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
