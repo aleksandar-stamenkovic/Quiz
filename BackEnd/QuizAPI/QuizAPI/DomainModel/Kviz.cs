@@ -12,12 +12,14 @@ namespace QuizAPI.DomainModel
         public string Id { get; set; }
         public string Naziv { get; set; }
         public IList<Pitanje> Pitanja { get; set; }
+        public IList<Ucesnik> Ucesnici { get; set; }
         
         //public Korisnik Korisnik { get; set; }
 
         public Kviz()
         {
             Pitanja = new List<Pitanje>();
+            Ucesnici = new List<Ucesnik>();
         }
     }
 }
