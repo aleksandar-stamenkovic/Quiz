@@ -61,7 +61,20 @@ namespace QuizAPI.Controllers
             var kvizovi = korisnik.Kvizovi;
 
             return kvizovi;
-            
+
+        }
+
+        [HttpPost("ucesnik/{id}")]
+        // Dodaje ucesnika na osnovu id-a kviza
+        public async Task DodajUcesnika(Ucesnik ucesnik, string id)
+        {
+            var db = client.GetDatabase("quiz");
+            var collection = db.GetCollection<Korisnik>("korisnici");
+
+            var filter = Builders<Korisnik>.Filter.ElemMatch(x => x.Kvizovi, x => x.Id == id);
+            var update = Builders<Korisnik>.Update.Push("Kvizovi.$.Ucesnici", ucesnik);
+            await collection.FindOneAndUpdateAsync(filter, update);
+
         }
 
         [HttpGet("svi")]
