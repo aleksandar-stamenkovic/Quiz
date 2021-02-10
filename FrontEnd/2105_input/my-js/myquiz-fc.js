@@ -52,7 +52,7 @@ function pribaviSveKvizove() {
       "Email: " + a.email;
   }
 
-  fetch("https://localhost:44340/mesto/najboljeOcenjeni/" + a.email, {
+  fetch("https://localhost:44333/kviz/email/" + a.email, {
     method: "GET",
   }).then((p) =>
     p.json().then((data) => {
@@ -60,7 +60,7 @@ function pribaviSveKvizove() {
         let naziv = element["naziv"];
         let id = element["id"];
         let pitanja = element["pitanja"];
-
+        
         console.log(naziv, id, pitanja);
         generisiKarticuMyQuiz(".my-quiz-all-cards", naziv, id, pitanja);
       });

@@ -115,7 +115,7 @@ function logujSe() {
             email: email,
             loged: true,
             ime: data["ime"],
-            prezime: data["irezime"],
+            prezime: data["prezime"],
           })
         );
         a = JSON.parse(localStorage.getItem("loged-in"));

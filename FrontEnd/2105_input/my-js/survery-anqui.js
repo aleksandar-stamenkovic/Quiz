@@ -12,7 +12,7 @@ function pribaviKviz() {
   let kvdata = sessionStorage.getItem("kvizkod");
   console.log(kvdata);
 
-  fetch("https://localhost:44340/mesto/najboljeOcenjeni/" + kvdata, {
+  fetch("https://localhost:44333/kviz/" + kvdata, {
     method: "GET",
   }).then((p) =>
     p.json().then((data) => {
@@ -144,7 +144,7 @@ function zavrsiISubmitujTest() {
   console.log(email);
   console.log(tacnoUradjena);
 
-  fetch("https://localhost:44333/korisnik" + kvdata, {
+  fetch("https://localhost:44333/kviz/ucesnik/" + kvdata, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
