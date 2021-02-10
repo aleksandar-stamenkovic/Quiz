@@ -25,38 +25,43 @@ namespace QuizAPI.Controllers
         public async Task<IActionResult> DodajKviz(Kviz kviz, string email)
         {
             var db = client.GetDatabase("quiz");
-            var kvizovi_collection = db.GetCollection<Kviz>("kvizovi");
-            var korisnici_collection = db.GetCollection<Korisnik>("korisnici");
+            var collection = db.GetCollection<Korisnik>("korisnici");
+            kviz.Id = DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
 
-            var korisnik = await korisnici_collection.Find(x => x.Email == email).FirstOrDefaultAsync();
-            kviz.Korisnik = new MongoDBRef("korisnici", korisnik.Id);
+            var filter = Builders<Korisnik>.Filter.Eq(x => x.Email, email);
+            var update = Builders<Korisnik>.Update.Push(x => x.Kvizovi, kviz);
+            await collection.FindOneAndUpdateAsync(filter, update);
 
-            await kvizovi_collection.InsertOneAsync(kviz);
-
-            var kviz_iz_baze = await kvizovi_collection.Find(x => x.Naziv == kviz.Naziv).FirstOrDefaultAsync();
-            korisnik.Kvizovi.Add(new MongoDBRef("kvizovi", kviz_iz_baze.Id));
-            await korisnici_collection.ReplaceOneAsync(x => x.Email == email, korisnik);
-            
             return Ok();
         }
 
         [HttpGet("{id}")]
         // Vraca kviz na osnovu id-a
-        public object VratiKviz(string id)
+        public async Task<Kviz> VratiKviz(string id)
         {
             var db = client.GetDatabase("quiz");
-            var collection = db.GetCollection<Kviz>("kvizovi");
+            var collection = db.GetCollection<Korisnik>("korisnici");
 
 
-            /*var filter = Builders<Kviz>.Filter.Eq("_id", new ObjectId(id));
-            Kviz kviz = await collection.Find(filter).FirstOrDefaultAsync();*/
+            var filter = Builders<Korisnik>.Filter.ElemMatch(x => x.Kvizovi, x => x.Id == id);
+            var korisnik = await collection.Find(filter).FirstOrDefaultAsync();
 
-            var idconverted = ObjectId.Parse(id);
-            var kviz = collection.Find(x => x.Id == idconverted).ToList()
-                                 .Select(x => new { x.Naziv, x.Pitanja })
-                                 .FirstOrDefault();
+            return korisnik.Kvizovi.FirstOrDefault(x => x.Id == id);
+        }
 
-            return kviz;
+        [HttpGet("email/{email}")]
+        // Vraca listu kvizova na osnovu email-a
+        public List<Kviz> VratiKvizove(string email)
+        {
+            var db = client.GetDatabase("quiz");
+            var collection = db.GetCollection<Korisnik>("korisnici");
+
+            var korisnik = collection.Find(x => x.Email == email).FirstOrDefault();
+
+            var kvizovi = korisnik.Kvizovi;
+
+            return kvizovi;
+            
         }
 
         [HttpGet("svi")]

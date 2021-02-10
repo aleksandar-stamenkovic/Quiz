@@ -9,10 +9,11 @@ namespace QuizAPI.DomainModel
 {
     public class Kviz
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
         public string Naziv { get; set; }
         public IList<Pitanje> Pitanja { get; set; }
-        public MongoDBRef Korisnik { get; set; }
+        
+        //public Korisnik Korisnik { get; set; }
 
         public Kviz()
         {
