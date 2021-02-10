@@ -1,27 +1,36 @@
 //globalne promenljive
-let qNo = 2;
-let ans = [];
-let tacniOdgovori = [4, 1];
-let tacnoUradjena = 0;
+let qNo = 0; //cuva broj pitanja u okviru kviza
+let ans = []; //cuva niz brojeva odgovora pitanja od stranje korisnika
+let tacniOdgovori = [4, 1, 2, 3]; //sadrzi brojeve tacnih odgovora za pitanja respektivno
+let tacnoUradjena = 0; //broji tacno uradjena pitanja
+
+//onload pozivi funkcija
+pribaviKviz();
 
 //funkcije i jquery
 function pribaviKviz() {
   let kvdata = sessionStorage.getItem("kvizkod");
   console.log(kvdata);
 
-  /*fetch("https://localhost:44340/mesto/najboljeOcenjeni/" + a.email, {
+  fetch("https://localhost:44340/mesto/najboljeOcenjeni/" + kvdata, {
     method: "GET",
   }).then((p) =>
     p.json().then((data) => {
       let naziv = data["naziv"];
       document.querySelector("#quizNameSurvey").innerHTML = naziv;
 
+      tacniOdgovori = [];
+      tacnoUradjena = 0;
+      ans = [];
+      qNo = 0;
+
       data["pitanja"].forEach((element) => {
-        let pitanje = element["pitanje"];
+        let pitanje = element["tekst"];
         let odg1 = element["odgovor1"];
         let odg2 = element["odgovor2"];
         let odg3 = element["odgovor3"];
         let odg4 = element["odgovor4"];
+        let tacan = element["tacan"];
 
         console.log(element);
         qNo++;
@@ -34,11 +43,12 @@ function pribaviKviz() {
           odg3,
           odg4
         );
+
+        tacniOdgovori.push(tacan);
       });
     })
-  );*/
+  );
 }
-pribaviKviz();
 
 function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
   var element = $(
@@ -51,32 +61,40 @@ function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
       '<ul class="ml-3">' +
       "<li>" +
       "<label>" +
-      '<input class="with-gap" name="group1" value="value1" type="radio" />' +
-      "<span>A." +
+      '<input class="with-gap" name="group' +
+      redNo +
+      '"value="1" type="radio" />' +
+      "<span>A. " +
       odg1 +
       "</span>" +
       "</label>" +
       "</li>" +
       "<li>" +
       "<label>" +
-      '<input class="with-gap" name="group1" value="value2" type="radio" />' +
-      "<span>B." +
+      '<input class="with-gap" name="group' +
+      redNo +
+      '" value="2" type="radio" />' +
+      "<span>B. " +
       odg2 +
       "</span>" +
       "</label>" +
       "</li>" +
       "<li>" +
       "<label>" +
-      '<input class="with-gap" name="group1" value="value3" type="radio" />' +
-      "<span>C." +
+      '<input class="with-gap" name="group' +
+      redNo +
+      '" value="3" type="radio" />' +
+      "<span>C. " +
       odg3 +
       "</span>" +
       "</label>" +
       "</li>" +
       "<li>" +
       "<label>" +
-      '<input class="with-gap" name="group1" value="value4" type="radio" />' +
-      "<span>D." +
+      '<input class="with-gap" name="group' +
+      redNo +
+      '" value="4" type="radio" />' +
+      "<span>D. " +
       odg4 +
       "</span>" +
       "</label>" +
@@ -107,9 +125,35 @@ function proveriTacneOdgovore() {
   for (let i = 0; i < qNo; i++) {
     if (ans[i] == tacniOdgovori[i]) tacnoUradjena++;
   }
-  console.log("tacni odg" + tacnoUradjena);
+  console.log("tacni odgovori: " + tacnoUradjena);
   let tmp = tacnoUradjena;
   tacnoUradjena = 0;
   ans = [];
   return tmp;
 }
+
+//testiranje hradcode test
+/*generisiKarticuPitanja(
+  ".question-container-for-addition",
+  1,
+  " pitanje asdassadasasdasd",
+  "odgovor1",
+  "odgovor 2",
+  "odgovor 3",
+  "odgovor4"
+);
+
+generisiKarticuPitanja(
+  ".question-container-for-addition",
+  2,
+  " pitanje asdassadasasdasd",
+  "odgovor1",
+  "odgovor 2",
+  "odgovor 3",
+  "odgovor4"
+);
+tacniOdgovori = [1, 3];
+qNo = 2;
+
+//question-container-for-addition
+*/

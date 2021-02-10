@@ -44,6 +44,7 @@ function pribaviSveKvizove() {
   console.log("onloadbody");
   a = JSON.parse(localStorage.getItem("loged-in"));
   if (a != null) {
+    console.log(a);
     document.querySelector(".myquiz-data-ime").innerHTML = "Ime: " + a.ime;
     document.querySelector(".myquiz-data-prezime").innerHTML =
       "Prezime: " + a.prezime;
