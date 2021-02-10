@@ -106,7 +106,7 @@ function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
   console.log("generator proso");
 }
 
-function testkoncept() {
+function zavrsiTest() {
   for (let i = 0; i < qNo; i++) {
     let grNo = i + 1;
     console.log(grNo);
@@ -132,7 +132,39 @@ function proveriTacneOdgovore() {
   return tmp;
 }
 
+function zavrsiISubmitujTest() {
+  let kvdata = sessionStorage.getItem("kvizkod");
+  let dataSubmit = document.querySelectorAll(".my-data-for-submit");
+  let ime = dataSubmit[0].value;
+  let prezime = dataSubmit[1].value;
+  let email = dataSubmit[2].value;
+  console.log(kvdata);
+  console.log(ime);
+  console.log(prezime);
+  console.log(email);
+  console.log(tacnoUradjena);
+
+  fetch("https://localhost:44333/korisnik" + kvdata, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ime: ime,
+      prezime: prezime,
+      email: email,
+      tacniOdgovori: tacnoUradjena,
+    }),
+  }).then((p) => {
+    if (p.ok) {
+      alert("Uspesno uradjen i predat kviz");
+      window.location.href = "index.html";
+    }
+  });
+}
+
 //testiranje hradcode test
+
 /*generisiKarticuPitanja(
   ".question-container-for-addition",
   1,
