@@ -31,6 +31,9 @@ function proveriLogIn() {
       btnLog = document.querySelector("#btnOdjava");
       btnLog.hidden = true;*/
     }
+  } else {
+    console.log("niste ulogovani");
+    window.location.href = "login.html";
   }
 }
 
