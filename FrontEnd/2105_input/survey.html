@@ -14,9 +14,13 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/tooplate.css">
+    <link rel="stylesheet" href="./my-css/css-local.css">
 </head>
 
 <body id="survey" class="font-weight-light">
+    <div class="back-to-home hand-point-cursor" onclick="window.location='index.html'">
+        Početna
+     </div>
     <div class="container tm-container-max-800">
         <div class="row">
             <div class="col-12">
@@ -61,7 +65,7 @@
                         
                     </div>
 
-                    <button onclick="zavrsiTest()">asasdasdasdasdasd</button>
+                    <!--<button onclick="zavrsiTest()">asasdasdasdasdasd</button>-->
                   
                     <div class="tm-bg-black tm-form-block">
                         <p class="mb-4">Unesite vaše podatke</p>
@@ -78,6 +82,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="alert-div">
+                    <h6 class="alert-submit-poruka"></h6>
                     </div>
                     <div class="text-center mt-5">
                         <button type="submit" class="waves-effect btn-large" onclick="zavrsiISubmitujTest()">Submit</button>

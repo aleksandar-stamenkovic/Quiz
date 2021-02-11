@@ -1,3 +1,36 @@
 .my-quiz-card {
   padding-top: 10px !important;
 }
+
+.my-qu-card-color {
+  color: #1e88e5;
+}
+
+.hand-point-cursor {
+  cursor: pointer;
+}
+
+.alert-div {
+  background-color: black;
+  opacity: 0.9;
+  text-align: center;
+}
+.alert-submit-poruka {
+  align-items: center;
+  color: red;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.back-to-home {
+  margin-top: 30px;
+  margin-left: 30px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  background-color: black;
+  opacity: 0.6;
+  display: inline-block;
+}

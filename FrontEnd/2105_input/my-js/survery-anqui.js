@@ -118,7 +118,7 @@ function zavrsiTest() {
   }
 
   console.log(ans);
-  proveriTacneOdgovore();
+  return proveriTacneOdgovore();
 }
 
 function proveriTacneOdgovore() {
@@ -133,6 +133,21 @@ function proveriTacneOdgovore() {
 }
 
 function zavrsiISubmitujTest() {
+  if (validirajUnosTesta() == false) {
+    console.log("niste cekirali sva polja");
+    document.querySelector(".alert-submit-poruka").innerHTML =
+      "Niste čekirali neka od pitanja!";
+    return;
+  }
+  if (validirajUnosPodatakaUcesnika() == false) {
+    console.log("Niste popunili polje licnih podataka!");
+    document.querySelector(".alert-submit-poruka").innerHTML =
+      "Niste popunili polja ličnih podataka!";
+    return;
+  }
+  document.querySelector(".alert-submit-poruka").innerHTML = "";
+
+  let brTacnih = zavrsiTest();
   let kvdata = sessionStorage.getItem("kvizkod");
   let dataSubmit = document.querySelectorAll(".my-data-for-submit");
   let ime = dataSubmit[0].value;
@@ -142,7 +157,7 @@ function zavrsiISubmitujTest() {
   console.log(ime);
   console.log(prezime);
   console.log(email);
-  console.log(tacnoUradjena);
+  console.log(brTacnih);
 
   fetch("https://localhost:44333/kviz/ucesnik/" + kvdata, {
     method: "POST",
@@ -153,7 +168,7 @@ function zavrsiISubmitujTest() {
       ime: ime,
       prezime: prezime,
       email: email,
-      tacniOdgovori: tacnoUradjena,
+      tacniOdgovori: brTacnih,
     }),
   }).then((p) => {
     if (p.ok) {
@@ -161,6 +176,37 @@ function zavrsiISubmitujTest() {
       window.location.href = "index.html";
     }
   });
+}
+
+function validirajUnosTesta() {
+  let tmpCheckedArr = [];
+  for (let i = 0; i < qNo; i++) {
+    let grNo = i + 1;
+    console.log(grNo);
+    let val = document.querySelector(
+      "input[name=" + "group" + grNo + "]:checked"
+    );
+    if (val != null) {
+      console.log(val);
+      tmpCheckedArr.push(val);
+    }
+  }
+  if (qNo == tmpCheckedArr.length) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validirajUnosPodatakaUcesnika() {
+  let dataSubmit = document.querySelectorAll(".my-data-for-submit");
+  let ime = dataSubmit[0].value;
+  let prezime = dataSubmit[1].value;
+  let email = dataSubmit[2].value;
+  if (ime.length == 0 || prezime.length == 0 || email.length == 0) {
+    return false;
+  }
+  return true;
 }
 
 //testiranje hradcode test

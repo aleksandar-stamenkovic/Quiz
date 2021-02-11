@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/tooplate.css">
+    <link rel="stylesheet" href="./my-css/css-local.css">
 </head>
 
 <body id="home">
@@ -31,7 +32,7 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                 <div class="tm-home-left mt-3 font-weight-light">
-                    <p class="tm-mb-35">Online kvizovi <a href="http://www.tooplate.com/view/2105-input">aplikacija za organizaciju kvizova, kreiranje i odradjivanje istog</p>
+                    <p class="tm-mb-35">Online kvizovi <a>aplikacija za organizaciju kvizova, kreiranje i odradjivanje istog</p>
                     <p class="tm-mb-35">Mogucnost kreiranja kviza i pozivanja drugih korisnika da u tom kvizu ucestvuju</p>
                     <p>.</p>
                 </div>
@@ -43,8 +44,8 @@
                     <li class="d-flex justify-content-between align-items-center">
                         <a href="signup.html" class="tm-white-text">Registruj se</a>
                     </li>
-                    <li class="d-flex justify-content-between align-items-center">
-                        <a href="login.html" class="tm-white-text">Uloguj se</a>
+                    <li hidden class="d-flex justify-content-between align-items-center btn-uloguj-se">
+                        <a  href="login.html" class="tm-white-text">Uloguj se</a>
                     </li>
                     <li class="d-flex justify-content-between align-items-center">
                         <a class="tm-white-text" style="cursor: pointer;" onclick="prikaziInput()" >Pristupi kvizu</a>
@@ -74,6 +75,7 @@
         </div>
     </footer>
 
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="./my-js/index-actions.js"></script>
 </body>
 
