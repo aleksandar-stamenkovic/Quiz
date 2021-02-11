@@ -108,14 +108,14 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 #home {
-  background-image: url(../img/input-bg-05.jpg);
+  background-image: url(../img/bkg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
 }
 
 #survey {
-  background-image: url(../img/input-bg-06.jpg);
+  background-image: url(../img/bkg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -123,7 +123,7 @@ ul.tm-home-list:not(.browser-default) {
 
 #register {
   padding-top: 180px;
-  background-image: url(../img/input-bg-01.jpg);
+  background-image: url(../img/bkg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 30%;
@@ -131,7 +131,7 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 #application {
-  background-image: url(../img/input-bg-03.jpg);
+  background-image: url(../img/bkg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -139,7 +139,7 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 #login {
-  background-image: url(../img/input-bg-04.jpg);
+  background-image: url(../img/bkg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
