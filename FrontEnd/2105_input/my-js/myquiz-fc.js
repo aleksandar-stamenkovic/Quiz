@@ -1,17 +1,23 @@
-function generisiKarticuMyQuiz(host, imekv, idkv, pitanjakv) {
+function generisiKarticuMyQuiz(host, imekv, idkv, pitanjakv, ucesnicikv) {
+  let brojac = 1;
   let stringParagrafa = "";
+  let stringParagrafaUcesnici = "";
   pitanjakv.forEach((el) => {
-    stringParagrafa += '<p class="mb-0">' + el + "</p>";
+    stringParagrafa += '<p class="mb-0">' + brojac + ": " + el + "</p>";
+    brojac++;
+  });
+
+  ucesnicikv.forEach((el) => {
+    stringParagrafaUcesnici += '<p class="mb-0">' + el + "</p>";
   });
 
   console.log(stringParagrafa);
   var element = $(
     '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 tm-login-r my-quiz-card">' +
       '<header class="font-weight-light tm-bg-black p-5 h-100">' +
-      '<h3 class="mt-0 text-white font-weight-light" style="font-weight: bold;">Kviz 3</h3>' +
-      '<p style="font-weight: bold;"> Naziv kviza:' +
+      '<h5 class="mt-0 text-white" style="font-weight: bold;">Kviz: <a class="my-qu-card-color">' +
       imekv +
-      "</p>" +
+      "</a></h5>" +
       '<p class="mb-0" style="font-weight: bold;">Pitanja kviza:</p>' +
       stringParagrafa +
       '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ml-auto mr-0 text-center">' +
@@ -19,12 +25,33 @@ function generisiKarticuMyQuiz(host, imekv, idkv, pitanjakv) {
       idkv +
       "</p>" +
       "</div>" +
+      '<div hidden class="my-qu-ucesnici-hidden">' +
+      stringParagrafaUcesnici +
+      "</div>" +
+      '<p class="my-qu-card-color hand-point-cursor prikazi-ucesnike-btn" onclick="prikaziUcesnike(this)">prikaži učesnike</p>' +
       "</header>" +
       "</div>"
   );
   $(host).append(element);
 
   console.log("generator proso");
+}
+
+function prikaziUcesnike(host) {
+  let cardHost = host.parentNode;
+  let elToHide = cardHost.querySelector(".my-qu-ucesnici-hidden");
+
+  console.log("asdasasdasadssdsaasa");
+  console.log(cardHost.querySelector(".prikazi-ucesnike-btn"));
+  if (elToHide.hidden == true) {
+    elToHide.hidden = false;
+    cardHost.querySelector(".prikazi-ucesnike-btn").innerHTML =
+      "sakrij učesnike";
+  } else {
+    elToHide.hidden = true;
+    cardHost.querySelector(".prikazi-ucesnike-btn").innerHTML =
+      "prikaži učesnike";
+  }
 }
 
 /*
@@ -59,10 +86,41 @@ function pribaviSveKvizove() {
       data.forEach((element) => {
         let naziv = element["naziv"];
         let id = element["id"];
-        let pitanja = element["pitanja"];
-        
-        console.log(naziv, id, pitanja);
-        generisiKarticuMyQuiz(".my-quiz-all-cards", naziv, id, pitanja);
+        let pitanjaJson = element["pitanja"];
+        let ucesniciJson = element["ucesnici"];
+
+        console.log("ucenici");
+        console.log(element["ucesnici"]);
+        console.log("test podataka");
+        console.log(naziv, id, pitanjaJson);
+
+        let pitanjaTekst = [];
+
+        pitanjaJson.forEach((el) => {
+          pitanjaTekst.push(el["tekst"]);
+        });
+
+        let ucesniciTekst = [];
+        ucesniciJson.forEach((el) => {
+          ucesniciTekst.push(
+            el["ime"] +
+              "| " +
+              el["prezime"] +
+              "| " +
+              el["email"] +
+              "| tacnih odgovora:[ " +
+              el["tacniOdgovori"] +
+              " ]"
+          );
+        });
+
+        generisiKarticuMyQuiz(
+          ".my-quiz-all-cards",
+          naziv,
+          id,
+          pitanjaTekst,
+          ucesniciTekst
+        );
       });
     })
   );

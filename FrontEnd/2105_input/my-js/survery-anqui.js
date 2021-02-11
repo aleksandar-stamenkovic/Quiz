@@ -127,8 +127,8 @@ function proveriTacneOdgovore() {
   }
   console.log("tacni odgovori: " + tacnoUradjena);
   let tmp = tacnoUradjena;
-  tacnoUradjena = 0;
-  ans = [];
+  //tacnoUradjena = 0;
+  //ans = [];
   return tmp;
 }
 
