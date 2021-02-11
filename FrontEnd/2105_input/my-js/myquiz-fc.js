@@ -14,7 +14,11 @@ function generisiKarticuMyQuiz(host, imekv, idkv, pitanjakv, ucesnicikv) {
   console.log(stringParagrafa);
   var element = $(
     '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 tm-login-r my-quiz-card">' +
+      '<label hidden id="idkviza">' +
+      idkv +
+      "</label>" +
       '<header class="font-weight-light tm-bg-black p-5 h-100">' +
+      '<div class="obrisi-kviz-btn" onclick="obrisiKviz(this)">obriši kviz</div>' +
       '<h5 class="mt-0 text-white" style="font-weight: bold;">Kviz: <a class="my-qu-card-color">' +
       imekv +
       "</a></h5>" +
@@ -54,6 +58,24 @@ function prikaziUcesnike(host) {
   }
 }
 
+function obrisiKviz(host) {
+  let parent = host.parentNode.parentNode;
+  let id = parent.querySelector("#idkviza").innerHTML;
+  console.log(id);
+
+  fetch("https://localhost:44333/kviz/" + id, {
+    method: "DELETE",
+  }).then((p) => {
+    if (p.ok) {
+      console.log("uspesno obrisan kviz");
+      alert("Kviz je uspešno obrisan");
+      console.log(parent);
+      $(parent).remove();
+    } else {
+      console.log("brisanje neuspesno");
+    }
+  });
+}
 /*
 let niz = [
   "asdasasdadsadsadsdsadsa aasd da a ",
@@ -85,7 +107,7 @@ function pribaviSveKvizove() {
     p.json().then((data) => {
       data.forEach((element) => {
         let naziv = element["naziv"];
-        let id = element["id"];
+        let id = element["idString"];
         let pitanjaJson = element["pitanja"];
         let ucesniciJson = element["ucesnici"];
 
@@ -126,4 +148,5 @@ function pribaviSveKvizove() {
   );
 }
 
+//onload pozivi funkcija
 pribaviSveKvizove();

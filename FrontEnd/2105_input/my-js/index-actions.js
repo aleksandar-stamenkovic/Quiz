@@ -6,9 +6,27 @@ function prikaziInput() {
 function pristupiKvizu() {
   let kod = document.querySelector(".code-for-quiz-access").value;
   console.log(kod);
-  sessionStorage.setItem("kvizkod", kod);
+  console.log("asdasddsadsa");
 
-  window.location.href = "survey.html";
+  fetch("https://localhost:44333/kviz/proveri/" + kod, {
+    method: "GET",
+  }).then((p) => {
+    if (p.ok) {
+      p.json().then((data) => {
+        console.log(data);
+        if (data == false) {
+          document.querySelector(".postojanje-kviza-alert").hidden = false;
+          return;
+        } else {
+          document.querySelector(".postojanje-kviza-alert").hidden = true;
+          console.log("proso");
+          sessionStorage.setItem("kvizkod", kod);
+          window.location.href = "survey.html";
+        }
+      });
+    }
+  });
+
   /*
     // Save data to sessionStorage
     sessionStorage.setItem('key', 'value');
@@ -44,4 +62,6 @@ function loginButtonSwap(host) {
   $(host).empty();
   $(host).append(element);
 }
+
+//onload izvrzavanje funkcija
 loginButtonSwap(".btn-uloguj-se");

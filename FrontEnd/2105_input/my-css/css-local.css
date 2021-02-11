@@ -34,3 +34,21 @@
   opacity: 0.6;
   display: inline-block;
 }
+
+.postojanje-kviza-alert {
+  color: red !important;
+  font-weight: bold;
+}
+
+.obrisi-kviz-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 35px;
+  right: 50px;
+  font-size: 18px;
+  color: #1e88e5;
+}
+
+input:disabled {
+  color: white !important;
+}

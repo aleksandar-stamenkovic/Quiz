@@ -1,7 +1,7 @@
 //globalne promenljive
 let qNo = 0; //cuva broj pitanja u okviru kviza
 let ans = []; //cuva niz brojeva odgovora pitanja od stranje korisnika
-let tacniOdgovori = [4, 1, 2, 3]; //sadrzi brojeve tacnih odgovora za pitanja respektivno
+let tacniOdgovori = []; //sadrzi brojeve tacnih odgovora za pitanja respektivno
 let tacnoUradjena = 0; //broji tacno uradjena pitanja
 
 //onload pozivi funkcija
@@ -64,7 +64,9 @@ function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
       '<input class="with-gap" name="group' +
       redNo +
       '"value="1" type="radio" />' +
-      "<span>A. " +
+      '<span class="odgovori-color-' +
+      redNo +
+      '">A. ' +
       odg1 +
       "</span>" +
       "</label>" +
@@ -74,7 +76,9 @@ function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
       '<input class="with-gap" name="group' +
       redNo +
       '" value="2" type="radio" />' +
-      "<span>B. " +
+      '<span class="odgovori-color-' +
+      redNo +
+      '">B. ' +
       odg2 +
       "</span>" +
       "</label>" +
@@ -84,7 +88,9 @@ function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
       '<input class="with-gap" name="group' +
       redNo +
       '" value="3" type="radio" />' +
-      "<span>C. " +
+      '<span class="odgovori-color-' +
+      redNo +
+      '">C. ' +
       odg3 +
       "</span>" +
       "</label>" +
@@ -94,7 +100,9 @@ function generisiKarticuPitanja(host, redNo, pitanje, odg1, odg2, odg3, odg4) {
       '<input class="with-gap" name="group' +
       redNo +
       '" value="4" type="radio" />' +
-      "<span>D. " +
+      '<span class="odgovori-color-' +
+      redNo +
+      '">D. ' +
       odg4 +
       "</span>" +
       "</label>" +
@@ -158,7 +166,6 @@ function zavrsiISubmitujTest() {
   console.log(prezime);
   console.log(email);
   console.log(brTacnih);
-
   fetch("https://localhost:44333/kviz/ucesnik/" + kvdata, {
     method: "POST",
     headers: {
@@ -173,7 +180,8 @@ function zavrsiISubmitujTest() {
   }).then((p) => {
     if (p.ok) {
       alert("Uspesno uradjen i predat kviz");
-      window.location.href = "index.html";
+      markirajOdgovore();
+      //window.location.href = "index.html";
     }
   });
 }
@@ -207,6 +215,32 @@ function validirajUnosPodatakaUcesnika() {
     return false;
   }
   return true;
+}
+
+function markirajOdgovore() {
+  for (let i = 0; i < qNo; i++) {
+    let x = i + 1;
+    let nizodg = document.querySelectorAll(".odgovori-color-" + x);
+    console.log(nizodg);
+
+    nizodg[0].style.color = "white";
+    nizodg[1].style.color = "white";
+    nizodg[2].style.color = "white";
+    nizodg[3].style.color = "white";
+
+    nizodg[0].style.backgroundColor = "#F02B25";
+    nizodg[1].style.backgroundColor = "#F02B25";
+    nizodg[2].style.backgroundColor = "#F02B25";
+    nizodg[3].style.backgroundColor = "#F02B25";
+
+    nizodg[tacniOdgovori[i] - 1].style.backgroundColor = "#32C326";
+    // console.log(nizodg[tacniOdgovori[i]]);
+    console.log(nizodg[tacniOdgovori[i] - 1]);
+  }
+  let inputs = document.getElementsByTagName("input");
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].disabled = "disabled";
+  }
 }
 
 //testiranje hradcode test

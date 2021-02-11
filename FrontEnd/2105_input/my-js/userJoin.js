@@ -43,6 +43,17 @@ function registrujSe() {
   let prezime = nizRegister[1].value;
   let email = nizRegister[2].value;
   let password = nizRegister[3].value;
+  console.log(email.includes("@"));
+  if (
+    ime.length == 0 ||
+    prezime.length == 0 ||
+    email.length == 0 ||
+    password.length == 0 ||
+    !email.includes("@")
+  ) {
+    console.log("nevalidno");
+    return;
+  }
 
   console.log(ime);
   console.log(prezime);

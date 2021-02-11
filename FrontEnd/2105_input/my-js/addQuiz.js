@@ -131,20 +131,23 @@ function zavrsiDodavanjeKviza() {
   console.log(JSON.parse(localStorage.getItem("loged-in")).email);
   console.log("***************************");
 
-  fetch("https://localhost:44333/kviz/" + JSON.parse(localStorage.getItem("loged-in")).email, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: 
-      JSON.stringify({
+  fetch(
+    "https://localhost:44333/kviz/" +
+      JSON.parse(localStorage.getItem("loged-in")).email,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         naziv: ime,
         pitanja: nizPitanja,
-      })
-    ,
-  }).then((p) => {
+      }),
+    }
+  ).then((p) => {
     if (p.ok) {
-      console.log("USPESNO DODATA RUTA");
+      console.log("USPESNO DODAT KVIZ");
+      alert("uspesno dodat kviz");
       window.location.href = "index.html";
     } else {
       window.location.href = "application.html";
