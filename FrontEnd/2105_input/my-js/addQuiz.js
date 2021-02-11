@@ -50,19 +50,19 @@ function dodajPitanje(host) {
       "<h6>Pitanje:" +
       pitanje +
       "</h6>" +
-      "<h6>Odgovor 1:" +
+      "<h6>Odgovor 1: " +
       odg1 +
       "</h6>" +
-      "<h6>Odgovor 2:" +
+      "<h6>Odgovor 2: " +
       odg2 +
       "</h6>" +
-      "<h6>Odgovor 3:" +
+      "<h6>Odgovor 3: " +
       odg3 +
       "</h6>" +
-      "<h6>Odgovor 4:" +
+      "<h6>Odgovor 4: " +
       odg4 +
       "</h6>" +
-      "<h6>Tačan odgovor:" +
+      "<h6>Tačan odgovor: " +
       tacno +
       "</h6>" +
       "</div>" +
