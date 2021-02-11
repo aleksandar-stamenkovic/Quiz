@@ -13,6 +13,8 @@ namespace QuizAPI.DomainModel
         [BsonId]
         //[BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; set; }
+        [BsonIgnore]
+        public string IdString { get => Id.ToString(); }
         public string Naziv { get; set; }
         public IList<Pitanje> Pitanja { get; set; }
         public IList<Ucesnik> Ucesnici { get; set; }
