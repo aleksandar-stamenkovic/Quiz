@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,9 @@ namespace QuizAPI.DomainModel
 {
     public class Kviz
     {
-        public string Id { get; set; }
+        [BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId Id { get; set; }
         public string Naziv { get; set; }
         public IList<Pitanje> Pitanja { get; set; }
         public IList<Ucesnik> Ucesnici { get; set; }
@@ -18,6 +21,7 @@ namespace QuizAPI.DomainModel
 
         public Kviz()
         {
+            //Id = ObjectId.GenerateNewId();
             Pitanja = new List<Pitanje>();
             Ucesnici = new List<Ucesnik>();
         }
