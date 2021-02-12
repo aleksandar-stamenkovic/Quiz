@@ -32,8 +32,9 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                 <div class="tm-home-left mt-3 font-weight-light">
-                    <p class="tm-mb-35">Online kvizovi <a>aplikacija za organizaciju kvizova, kreiranje i odradjivanje istog</p>
-                    <p class="tm-mb-35">Mogucnost kreiranja kviza i pozivanja drugih korisnika da u tom kvizu ucestvuju</p>
+                    <p class="tm-mb-35">Online kvizovi aplikacija za organizaciju kvizova, kreiranje i odrađivanje istog.</p>
+                    <p class="tm-mb-35">Mogućnost kreiranja kviza i pozivanja drugih korisnika da u tom kvizu učestvuju.</p>
+                    <p class="tm-mb-35">Sve što je potrebno da uradite je da pošaljete ID kviza!</p>
                     <p>.</p>
                 </div>
             </div>
@@ -42,26 +43,54 @@
                     <a href="tm-white-text"></a>
 
                     <li class="d-flex justify-content-between align-items-center">
-                        <a href="signup.html" class="tm-white-text">Registruj se</a>
+                        <a href="signup.html" class="tm-white-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            </svg>
+                            Registruj se
+                        </a>
                     </li>
                     <li hidden class="d-flex justify-content-between align-items-center btn-uloguj-se">
-                        <a  href="login.html" class="tm-white-text">Uloguj se</a>
+                        <a  href="login.html" class="tm-white-text">
+                            Uloguj se
+                        </a>
                     </li>
                     <li class="d-flex justify-content-between align-items-center">
-                        <a class="tm-white-text" style="cursor: pointer;" onclick="prikaziInput()" >Pristupi kvizu</a>
+                        <a class="tm-white-text" style="cursor: pointer;" onclick="prikaziInput()" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                            </svg>
+                            Pristupi kvizu
+                        </a>
                     </li>
                     <li hidden id="elementInputHiden">
                         <div class="input-field">
                             <input placeholder="Kod za pristup kvizu" name="name" id="name" type="text" class="validate code-for-quiz-access">
                             <a hidden class="postojanje-kviza-alert">Kviz ne postoji!</a><br><p></p>
-                            <a class="tm-white-text hand-point-cursor" onclick="pristupiKvizu()">Pristupi</a>
+                            <a class="tm-white-text hand-point-cursor" onclick="pristupiKvizu()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                    <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                </svg>
+                                Pristupi
+                            </a>
                         </div>
                     </li>
                     <li class="d-flex justify-content-between align-items-center">
-                        <a href="application.html" class="tm-white-text">Kreiraj kviz</a>
+                        <a href="application.html" class="tm-white-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                            Kreiraj kviz
+                        </a>
                     </li>
                     <li class="d-flex justify-content-between align-items-center">
-                        <a href="myquiz.html" class="tm-white-text">Moji kvizovi</a>
+                        <a href="myquiz.html" class="tm-white-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                            </svg>
+                            Moji kvizovi
+                        </a>
                     </li>
                 </ul>
             </div>

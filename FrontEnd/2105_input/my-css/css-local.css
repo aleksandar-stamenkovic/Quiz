@@ -52,3 +52,8 @@
 input:disabled {
   color: white !important;
 }
+
+.registration-controls {
+  background-color: rgb(37, 39, 56) !important;
+  opacity: 0.7 !important;
+}

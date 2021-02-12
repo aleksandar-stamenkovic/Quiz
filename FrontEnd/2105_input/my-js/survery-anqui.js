@@ -218,6 +218,9 @@ function validirajUnosPodatakaUcesnika() {
 }
 
 function markirajOdgovore() {
+
+  document.querySelector("button.waves-effect").disabled = "disabled";
+  generisiInfoORezultatu(document.querySelector(".alert-div"));
   for (let i = 0; i < qNo; i++) {
     let x = i + 1;
     let nizodg = document.querySelectorAll(".odgovori-color-" + x);
@@ -241,6 +244,20 @@ function markirajOdgovore() {
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].disabled = "disabled";
   }
+}
+
+/*
+* Dodaje alert info o rezultatu na kvizu.
+* Funkcija proveriTacneOdgovore() uvek vraca 0
+* (gore se resetuje brTacnih na 0)
+*/
+function generisiInfoORezultatu(host){
+  var element = $(
+  '<div class="alert alert-primary" role="alert">' +
+    'Br. tačnih odgovora: ' + proveriTacneOdgovore() + '' + ' od ukupno: ' + qNo +
+  '</div>'
+  );
+  $(host).append(element);
 }
 
 //testiranje hradcode test
