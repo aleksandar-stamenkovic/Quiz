@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using MongoDB.Driver;
-using MongoDB_Repository;
 using QuizAPI.DomainModel;
 
 namespace QuizAPI.Controllers
