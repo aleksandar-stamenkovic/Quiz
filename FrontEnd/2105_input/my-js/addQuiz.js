@@ -47,7 +47,7 @@ function dodajPitanje(host) {
 
   var element2 = $(
     '<div class="tm-bg-white tm-form-pad-big forma-dodaj-pitanje">' +
-      "<h6>Pitanje:" +
+      "<h6>Pitanje: " +
       pitanje +
       "</h6>" +
       "<h6>Odgovor 1: " +

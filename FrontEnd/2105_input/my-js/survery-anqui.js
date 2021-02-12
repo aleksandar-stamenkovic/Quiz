@@ -181,6 +181,7 @@ function zavrsiISubmitujTest() {
     if (p.ok) {
       alert("Uspesno uradjen i predat kviz");
       markirajOdgovore();
+      generisiInfoORezultatu(document.querySelector(".alert-div"), brTacnih);
       //window.location.href = "index.html";
     }
   });
@@ -218,9 +219,8 @@ function validirajUnosPodatakaUcesnika() {
 }
 
 function markirajOdgovore() {
-
   document.querySelector("button.waves-effect").disabled = "disabled";
-  generisiInfoORezultatu(document.querySelector(".alert-div"));
+
   for (let i = 0; i < qNo; i++) {
     let x = i + 1;
     let nizodg = document.querySelectorAll(".odgovori-color-" + x);
@@ -247,20 +247,40 @@ function markirajOdgovore() {
 }
 
 /*
-* Dodaje alert info o rezultatu na kvizu.
-* Funkcija proveriTacneOdgovore() uvek vraca 0
-* (gore se resetuje brTacnih na 0)
-*/
-function generisiInfoORezultatu(host){
-  var element = $(
-  '<div class="alert alert-primary" role="alert">' +
-    'Br. tačnih odgovora: ' + proveriTacneOdgovore() + '' + ' od ukupno: ' + qNo +
-  '</div>'
-  );
+ * Dodaje alert info o rezultatu na kvizu.
+ * Funkcija proveriTacneOdgovore() uvek vraca 0
+ * (gore se resetuje brTacnih na 0)
+ */
+function generisiInfoORezultatu(host, brTacnih) {
+  var element;
+  if (brTacnih == 0) {
+    element = $(
+      '<div class="alert alert-danger" role="alert">' +
+        "Br. tačnih odgovora: " +
+        brTacnih +
+        "" +
+        " od ukupno: " +
+        qNo +
+        "</div>"
+    );
+  } else {
+    element = $(
+      '<div class="alert alert-primary" role="alert">' +
+        "Br. tačnih odgovora: " +
+        brTacnih +
+        "" +
+        " od ukupno: " +
+        qNo +
+        "</div>"
+    );
+  }
   $(host).append(element);
 }
 
 //testiranje hradcode test
+
+//generisiInfoORezultatu(document.querySelector(".alert-div"), 0);
+//generisiInfoORezultatu(document.querySelector(".alert-div"), 5);
 
 /*generisiKarticuPitanja(
   ".question-container-for-addition",
